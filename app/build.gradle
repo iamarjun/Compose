@@ -1,28 +1,31 @@
 plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
+    id "com.android.application"
+    id "kotlin-android"
+    id "kotlin-kapt"
+    id "kotlin-parcelize"
+    id "dagger.hilt.android.plugin"
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    compileSdkVersion Dependencies.compileSdkVersion
+    buildToolsVersion Dependencies.buildToolsVersion
 
     defaultConfig {
         applicationId "com.example.jetpackcompose"
-        minSdkVersion 21
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion Dependencies.minSdkVersion
+        targetSdkVersion Dependencies.targetSdkVersion
+        versionCode Dependencies.versionCode
+        versionName Dependencies.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "AuthToken", "Token 9c8b06d329136da358c2d00e76946b0111ce2c48")
     }
 
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
     compileOptions {
@@ -30,15 +33,14 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = "1.8"
         useIR = true
     }
     composeOptions {
-        def kotlin_compiler_version = "1.4.30"
-        kotlinCompilerVersion kotlin_compiler_version
-
-        def kotlin_compiler_extension_version = "1.0.0-beta01"
-        kotlinCompilerExtensionVersion kotlin_compiler_extension_version
+        kotlinCompilerExtensionVersion Dependencies.compose
+    }
+    buildFeatures {
+        viewBinding true
     }
     buildFeatures {
         compose true
@@ -47,42 +49,41 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'com.google.android.material:material:1.3.0'
+    implementation "androidx.core:core-ktx:$Dependencies.core"
+    implementation "com.google.android.material:material:$Dependencies.material"
 
-    implementation 'androidx.compose.ui:ui:1.0.0-beta01'
+    implementation "androidx.compose.ui:ui:$Dependencies.compose"
     // Tooling support (Previews, etc.)
-    implementation 'androidx.compose.ui:ui-tooling:1.0.0-beta01'
+    implementation "androidx.compose.ui:ui-tooling:$Dependencies.compose"
     // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
-    implementation 'androidx.compose.foundation:foundation:1.0.0-beta01'
+    implementation "androidx.compose.foundation:foundation:$Dependencies.compose"
     // Material Design
-    implementation 'androidx.compose.material:material:1.0.0-beta01'
+    implementation "androidx.compose.material:material:$Dependencies.compose"
     // Material design icons
-    implementation 'androidx.compose.material:material-icons-core:1.0.0-beta01'
-    implementation 'androidx.compose.material:material-icons-extended:1.0.0-beta01'
+    implementation "androidx.compose.material:material-icons-core:$Dependencies.compose"
+    implementation "androidx.compose.material:material-icons-extended:$Dependencies.compose"
     // Integration with activities
-    implementation 'androidx.activity:activity-compose:1.3.0-alpha03'
+    implementation "androidx.activity:activity-compose:$Dependencies.composeActivity"
     // Integration with ViewModels
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha02'
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$Dependencies.composeVideModel"
     // Integration with observables
-    implementation 'androidx.compose.runtime:runtime-livedata:1.0.0-beta01'
-    implementation 'androidx.compose.runtime:runtime-rxjava2:1.0.0-beta01'
+    implementation "androidx.compose.runtime:runtime-livedata:$Dependencies.compose"
+    implementation "androidx.compose.runtime:runtime-rxjava2:$Dependencies.compose"
 
-    implementation "androidx.ui:ui-tooling:1.0.0-alpha07"
+    implementation "androidx.ui:ui-tooling:$Dependencies.compose"
 
-    implementation "androidx.navigation:navigation-fragment-ktx:2.3.3"
-    implementation "androidx.navigation:navigation-ui-ktx:2.3.3"
+    implementation "androidx.navigation:navigation-fragment-ktx:$Dependencies.navigationComponent"
+    implementation "androidx.navigation:navigation-ui-ktx:$Dependencies.navigationComponent"
 
-    implementation "com.squareup.retrofit2:retrofit:2.9.0"
-    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$Dependencies.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$Dependencies.retrofit"
 
-    implementation 'com.google.dagger:hilt-android:2.33-beta'
-    kapt 'com.google.dagger:hilt-compiler:2.33-beta'
+    implementation "com.google.dagger:hilt-android:$Dependencies.hilt"
+    kapt "com.google.dagger:hilt-compiler:$Dependencies.hilt"
 
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$Dependencies.hiltViewModel"
 
-    implementation "dev.chrisbanes.accompanist:accompanist-glide:0.6.1"
+    implementation "dev.chrisbanes.accompanist:accompanist-glide:$Dependencies.accompanist"
 
-//    implementation "com.github.bumptech.glide:glide:4.12.0"
-//    kapt "com.github.bumptech.glide:compiler:4.12.0"
+    implementation "androidx.paging:paging-runtime-ktx:$Dependencies.paging3"
 }
