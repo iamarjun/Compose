@@ -1,9 +1,10 @@
-package com.example.jetpackcompose.model
+package com.example.jetpackcompose.model.network
 
 
 import com.google.gson.annotations.SerializedName
 
-data class RecipeListResponse(
+
+data class RecipeListNetworkEntity(
     @SerializedName("count")
     val count: Int,
     @SerializedName("next")
@@ -11,5 +12,5 @@ data class RecipeListResponse(
     @SerializedName("previous")
     val previous: String,
     @SerializedName("results")
-    val results: List<Recipe>
+    val results: List<RecipeNetWorkEntity>
 )
