@@ -19,7 +19,8 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "AuthToken", "Token 9c8b06d329136da358c2d00e76946b0111ce2c48")
+        buildConfigField("String", "AUTH_TOKEN", "\"Token 9c8b06d329136da358c2d00e76946b0111ce2c48\"")
+        buildConfigField("String", "BASE_URL", "\"https://food2fork.ca/api/recipe/\"")
     }
 
     buildTypes {
@@ -70,7 +71,7 @@ dependencies {
     implementation "androidx.compose.runtime:runtime-livedata:$Dependencies.compose"
     implementation "androidx.compose.runtime:runtime-rxjava2:$Dependencies.compose"
 
-    implementation "androidx.ui:ui-tooling:$Dependencies.compose"
+    implementation "androidx.ui:ui-tooling:$Dependencies.uiTooling"
 
     implementation "androidx.navigation:navigation-fragment-ktx:$Dependencies.navigationComponent"
     implementation "androidx.navigation:navigation-ui-ktx:$Dependencies.navigationComponent"

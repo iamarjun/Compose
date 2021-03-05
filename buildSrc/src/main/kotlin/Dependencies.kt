@@ -19,6 +19,8 @@ object Dependencies {
 
     const val navigationComponent = "2.3.3"
 
+    const val uiTooling = "1.0.0-alpha07"
+
     const val retrofit = "2.9.0"
 
     const val paging3 = "3.0.0-beta01"
