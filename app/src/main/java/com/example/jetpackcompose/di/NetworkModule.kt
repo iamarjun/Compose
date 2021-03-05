@@ -15,8 +15,17 @@ import retrofit2.converter.gson.GsonConverterFactory
 object NetworkModule {
 
     @Provides
-    fun provideRetrofitBuilder(): Retrofit = Retrofit.Builder()
-        .client(OkHttpClient.Builder().build())
+    fun provideOkhttpClient(): OkHttpClient = OkHttpClient.Builder()
+        .addInterceptor {
+            val request = it.request().newBuilder()
+                .header("Authorization", BuildConfig.AUTH_TOKEN)
+                .build()
+            it.proceed(request)
+        }.build()
+
+    @Provides
+    fun provideRetrofitBuilder(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
+        .client(okHttpClient)
         .baseUrl(BuildConfig.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
