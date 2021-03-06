@@ -1,6 +1,6 @@
 object Dependencies {
 
-    const val kotlin = "1.4.31"
+    const val kotlin = "1.4.30"
     const val hilt = "2.33-beta"
     const val androidGradleWrapper = "7.0.0-alpha08"
 
