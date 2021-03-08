@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 abstract class BaseFragment : Fragment() {
 
     @Composable
-    abstract fun Content()
+    abstract fun MainContent()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,7 +20,7 @@ abstract class BaseFragment : Fragment() {
     ): View? {
         return ComposeView(requireContext()).apply {
             setContent {
-                Content()
+                MainContent()
             }
         }
     }

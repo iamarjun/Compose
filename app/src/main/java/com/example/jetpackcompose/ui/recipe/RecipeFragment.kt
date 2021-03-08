@@ -12,7 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class RecipeFragment : BaseFragment() {
 
     @Composable
-    override fun Content() {
+    override fun MainContent() {
         Column(modifier = Modifier.padding(16.dp)) {
 
         }
