@@ -86,6 +86,4 @@ dependencies {
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$Dependencies.hiltViewModel"
 
     implementation "dev.chrisbanes.accompanist:accompanist-glide:$Dependencies.accompanist"
-
-    implementation "androidx.paging:paging-runtime-ktx:$Dependencies.paging3"
 }
