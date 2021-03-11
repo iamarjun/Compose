@@ -7,7 +7,7 @@ object Dependencies {
     const val versionCode = 1
     const val versionName = "1.0"
 
-    const val kotlin = "1.4.30"
+    const val kotlin = "1.4.31"
     const val hilt = "2.33-beta"
     const val androidGradleWrapper = "7.0.0-alpha09"
     const val core = "1.3.2"
@@ -21,4 +21,5 @@ object Dependencies {
     const val paging3 = "3.0.0-beta02"
     const val accompanist = "0.6.2"
     const val hiltViewModel = "1.0.0-alpha03"
+    const val appCompat = "1.3.0-beta01"
 }

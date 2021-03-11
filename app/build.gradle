@@ -54,6 +54,8 @@ dependencies {
     implementation "androidx.core:core-ktx:$Dependencies.core"
     implementation "com.google.android.material:material:$Dependencies.material"
 
+    implementation "androidx.appcompat:appcompat:$Dependencies.appCompat"
+
     implementation "androidx.compose.ui:ui:$Dependencies.compose"
     // Tooling support (Previews, etc.)
     implementation "androidx.compose.ui:ui-tooling:$Dependencies.compose"
