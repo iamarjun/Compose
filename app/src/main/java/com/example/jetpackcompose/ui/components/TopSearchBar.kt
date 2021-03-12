@@ -60,8 +60,16 @@ fun TopSearchBar(
                     },
                     textStyle = TextStyle(
                         color = MaterialTheme.colors.onSurface,
-                        background = MaterialTheme.colors.surface
+                        background = Color.Transparent,
+                    ),
+
+                    colors = TextFieldDefaults.textFieldColors(
+                        focusedIndicatorColor = Color.Transparent,
+                        disabledIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent,
+                        backgroundColor = Color.White,
                     )
+
 
                 )
             }
