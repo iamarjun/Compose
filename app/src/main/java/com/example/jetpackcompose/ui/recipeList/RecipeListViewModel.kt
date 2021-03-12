@@ -1,5 +1,6 @@
 package com.example.jetpackcompose.ui.recipeList
 
+import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,12 +16,28 @@ class RecipeListViewModel @Inject constructor(
 ) : ViewModel() {
 
     val recipes by lazy { mutableStateOf<List<Recipe>>(listOf()) }
+    val query by lazy { mutableStateOf<String>("") }
 
     init {
+        search()
+    }
+
+    fun search(query: String = "chicken") {
         viewModelScope.launch {
-            val response = repository.getRecipes("chicken")
-            recipes.value = response
+            try {
+                val response = repository.getRecipes(query)
+                recipes.value = response
+            } catch (e: Exception) {
+                Log.d(TAG, "search: $e")
+            }
         }
     }
 
+    fun onQueryChange(query: String) {
+        this.query.value = query
+    }
+
+    companion object {
+        private const val TAG = "RecipeListViewModel"
+    }
 }
