@@ -17,13 +17,16 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import com.example.jetpackcompose.ui.recipeList.FoodCategory
 import com.example.jetpackcompose.ui.recipeList.getAllFoodCategories
 
 @Composable
 fun TopSearchBar(
     query: String,
+    selectedCategory: FoodCategory?,
     onQueryChanged: (query: String) -> Unit,
     onSelectedCategorySelected: (query: String) -> Unit,
+    onExecuteSearch: () -> Unit,
 ) {
 
     Surface(
@@ -78,7 +81,9 @@ fun TopSearchBar(
                 itemsIndexed(items = getAllFoodCategories()) { _, item ->
                     CategoryChip(
                         category = item.value,
+                        isSelected = selectedCategory == item,
                         onSelectedCategorySelected = onSelectedCategorySelected,
+                        onExecuteSearch = onExecuteSearch
                     )
                 }
             }

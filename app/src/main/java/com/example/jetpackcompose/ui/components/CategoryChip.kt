@@ -19,6 +19,7 @@ fun CategoryChip(
     category: String,
     isSelected: Boolean = false,
     onSelectedCategorySelected: (String) -> Unit,
+    onExecuteSearch: () -> Unit,
 ) {
     Surface(
         modifier = Modifier.padding(4.dp),
@@ -28,9 +29,7 @@ fun CategoryChip(
         ),
         color = when {
             isSelected -> colorResource(R.color.teal_200)
-            else -> {
-                colorResource(R.color.purple_500)
-            }
+            else -> colorResource(R.color.purple_500)
         }
     ) {
         Row(modifier = Modifier
@@ -38,6 +37,7 @@ fun CategoryChip(
                 value = isSelected,
                 onValueChange = {
                     onSelectedCategorySelected(category)
+                    onExecuteSearch()
                 }
             )) {
             Text(
