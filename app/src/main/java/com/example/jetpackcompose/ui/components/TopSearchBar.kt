@@ -6,11 +6,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -19,15 +21,18 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.example.jetpackcompose.ui.recipeList.FoodCategory
 import com.example.jetpackcompose.ui.recipeList.getAllFoodCategories
+import kotlinx.coroutines.launch
 
 @Composable
 fun TopSearchBar(
     query: String,
+    scrollPos: Int,
     selectedCategory: FoodCategory?,
-    onQueryChanged: (query: String) -> Unit,
-    onSelectedCategorySelected: (query: String) -> Unit,
+    onQueryChanged: (String) -> Unit,
+    onCategorySelected: (String, Int) -> Unit,
     onExecuteSearch: () -> Unit,
-) {
+
+    ) {
 
     Surface(
         elevation = 8.dp,
@@ -77,12 +82,24 @@ fun TopSearchBar(
                 )
             }
 
-            LazyRow {
-                itemsIndexed(items = getAllFoodCategories()) { _, item ->
+            val state = rememberLazyListState()
+            val scope = rememberCoroutineScope()
+
+            LazyRow(
+                state = state
+            ) {
+
+                scope.launch {
+                    state.animateScrollToItem(scrollPos)
+                }
+
+                itemsIndexed(items = getAllFoodCategories()) { index, item ->
                     CategoryChip(
                         category = item.value,
                         isSelected = selectedCategory == item,
-                        onSelectedCategorySelected = onSelectedCategorySelected,
+                        onCategorySelected = {
+                            onCategorySelected(it, index)
+                        },
                         onExecuteSearch = onExecuteSearch
                     )
                 }

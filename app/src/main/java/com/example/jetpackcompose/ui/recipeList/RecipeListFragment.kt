@@ -24,9 +24,10 @@ class RecipeListFragment : BaseFragment() {
         Column {
             TopSearchBar(
                 query = query,
+                scrollPos = viewModel.scrollState,
                 selectedCategory = selectedCategory,
                 onQueryChanged = viewModel::onQueryChange,
-                onSelectedCategorySelected = viewModel::onSelectedCategoryChanged,
+                onCategorySelected = viewModel::onSelectedCategoryChanged,
                 onExecuteSearch = viewModel::search
             )
             LazyColumn {

@@ -18,6 +18,9 @@ class RecipeListViewModel @Inject constructor(
     val recipes by lazy { mutableStateOf<List<Recipe>>(listOf()) }
     val query by lazy { mutableStateOf<String>("") }
     val selectedCategory by lazy { mutableStateOf<FoodCategory?>(null) }
+    var scrollState: Int = 0
+        private set
+
     init {
         search()
     }
@@ -37,10 +40,11 @@ class RecipeListViewModel @Inject constructor(
         this.query.value = query
     }
 
-    fun onSelectedCategoryChanged(category: String) {
+    fun onSelectedCategoryChanged(category: String, position: Int) {
         val foodCategory = getFoodCategory(category)
         selectedCategory.value = foodCategory
         onQueryChange(category)
+        scrollState = position
     }
 
     companion object {

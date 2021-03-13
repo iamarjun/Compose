@@ -18,7 +18,7 @@ import com.example.jetpackcompose.R
 fun CategoryChip(
     category: String,
     isSelected: Boolean = false,
-    onSelectedCategorySelected: (String) -> Unit,
+    onCategorySelected: (String) -> Unit,
     onExecuteSearch: () -> Unit,
 ) {
     Surface(
@@ -36,7 +36,7 @@ fun CategoryChip(
             .toggleable(
                 value = isSelected,
                 onValueChange = {
-                    onSelectedCategorySelected(category)
+                    onCategorySelected(category)
                     onExecuteSearch()
                 }
             )) {
