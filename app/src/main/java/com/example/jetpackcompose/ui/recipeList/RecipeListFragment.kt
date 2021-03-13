@@ -19,18 +19,15 @@ class RecipeListFragment : BaseFragment() {
     override fun MainContent() {
         val recipes = viewModel.recipes.value
         val query = viewModel.query.value
+        val selectedCategory = viewModel.selectedCategory.value
 
         Column {
-            TopSearchBar(query = query,
-                onQueryChanged = {
-                    viewModel.onQueryChange(it)
-                },
-                onSelectedCategorySelected = {
-                    viewModel.apply {
-                        onQueryChange(it)
-                        search(it)
-                    }
-                }
+            TopSearchBar(
+                query = query,
+                selectedCategory = selectedCategory,
+                onQueryChanged = viewModel::onQueryChange,
+                onSelectedCategorySelected = viewModel::onSelectedCategoryChanged,
+                onExecuteSearch = viewModel::search
             )
             LazyColumn {
                 itemsIndexed(items = recipes) { _, recipe ->

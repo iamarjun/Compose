@@ -17,15 +17,15 @@ class RecipeListViewModel @Inject constructor(
 
     val recipes by lazy { mutableStateOf<List<Recipe>>(listOf()) }
     val query by lazy { mutableStateOf<String>("") }
-
+    val selectedCategory by lazy { mutableStateOf<FoodCategory?>(null) }
     init {
         search()
     }
 
-    fun search(query: String = "chicken") {
+    fun search() {
         viewModelScope.launch {
             try {
-                val response = repository.getRecipes(query)
+                val response = repository.getRecipes(query.value)
                 recipes.value = response
             } catch (e: Exception) {
                 Log.d(TAG, "search: $e")
@@ -35,6 +35,12 @@ class RecipeListViewModel @Inject constructor(
 
     fun onQueryChange(query: String) {
         this.query.value = query
+    }
+
+    fun onSelectedCategoryChanged(category: String) {
+        val foodCategory = getFoodCategory(category)
+        selectedCategory.value = foodCategory
+        onQueryChange(category)
     }
 
     companion object {
