@@ -87,5 +87,5 @@ dependencies {
 
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$Dependencies.hiltViewModel"
 
-    implementation "dev.chrisbanes.accompanist:accompanist-glide:$Dependencies.accompanist"
+    implementation "com.google.accompanist:accompanist-glide:$Dependencies.accompanist"
 }
