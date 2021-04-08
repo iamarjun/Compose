@@ -15,7 +15,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.jetpackcompose.R
 import com.example.jetpackcompose.model.domain.Recipe
-import dev.chrisbanes.accompanist.glide.GlideImage
+import com.google.accompanist.glide.GlideImage
 
 @Composable
 fun RecipeCard(
