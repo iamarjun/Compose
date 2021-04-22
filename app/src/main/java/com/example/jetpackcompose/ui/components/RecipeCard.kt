@@ -15,7 +15,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.jetpackcompose.R
 import com.example.jetpackcompose.model.domain.Recipe
-import com.google.accompanist.glide.GlideImage
+import com.google.accompanist.glide.rememberGlidePainter
+import com.google.accompanist.imageloading.ImageLoadState
+import kotlinx.coroutines.InternalCoroutinesApi
 
 @Composable
 fun RecipeCard(
@@ -34,25 +36,35 @@ fun RecipeCard(
         elevation = 8.dp
     ) {
         Column {
-            GlideImage(
-                data = recipe.featuredImage ?: "",
-                contentDescription = "Food Image",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .requiredHeight(250.dp),
-                contentScale = ContentScale.Crop,
-                loading = {
-                    Box(Modifier.matchParentSize()) {
-                        CircularProgressIndicator(Modifier.align(Alignment.Center))
-                    }
-                },
-                error = {
-                    Image(
+
+            val painter = rememberGlidePainter(
+                request = recipe.featuredImage ?: "",
+                shouldRefetchOnSizeChange = { _, _ -> false },
+            )
+
+            Box {
+                Image(
+                    painter = painter,
+                    contentDescription = "Food Image",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .requiredHeight(250.dp),
+                    contentScale = ContentScale.Crop,
+                )
+
+                when (painter.loadState) {
+                    ImageLoadState.Empty, ImageLoadState.Loading ->
+                        Box(Modifier.matchParentSize()) {
+                            CircularProgressIndicator(Modifier.align(Alignment.Center))
+                        }
+                    is ImageLoadState.Success -> {}
+                    is ImageLoadState.Error -> Image(
                         painter = painterResource(R.drawable.image_not_available),
                         contentDescription = "Placeholder Image",
                     )
                 }
-            )
+            }
+
             Row(
                 modifier = Modifier
                     .padding(

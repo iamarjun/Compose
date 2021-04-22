@@ -1,8 +1,8 @@
 package com.example.jetpackcompose.ui.recipeList
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.fragment.app.viewModels
 import com.example.jetpackcompose.ui.BaseFragment
@@ -21,7 +21,7 @@ class RecipeListFragment : BaseFragment() {
         val query = viewModel.query.value
         val selectedCategory = viewModel.selectedCategory.value
 
-        Column {
+        Scaffold(topBar = {
             TopSearchBar(
                 query = query,
                 scrollPos = viewModel.scrollState,
@@ -30,6 +30,7 @@ class RecipeListFragment : BaseFragment() {
                 onCategorySelected = viewModel::onSelectedCategoryChanged,
                 onExecuteSearch = viewModel::search
             )
+        }) {
             LazyColumn {
                 itemsIndexed(items = recipes) { _, recipe ->
                     RecipeCard(
