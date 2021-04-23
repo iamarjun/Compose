@@ -16,5 +16,9 @@
     <fragment
         android:id="@+id/recipeFragment"
         android:name="com.example.jetpackcompose.ui.recipe.RecipeFragment"
-        android:label="RecipeFragment" />
+        android:label="RecipeFragment" >
+        <argument
+            android:name="recipe"
+            app:argType="com.example.jetpackcompose.model.domain.Recipe" />
+    </fragment>
 </navigation>
