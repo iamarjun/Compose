@@ -1,6 +1,7 @@
-package com.example.jetpackcompose.ui.recipeList
+package com.example.jetpackcompose.model
 
-import com.example.jetpackcompose.ui.recipeList.FoodCategory.*
+import com.example.jetpackcompose.model.FoodCategory.*
+
 
 enum class FoodCategory(val value: String) {
     CHICKEN("Chicken"),

@@ -19,8 +19,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import com.example.jetpackcompose.ui.recipeList.FoodCategory
-import com.example.jetpackcompose.ui.recipeList.getAllFoodCategories
+import com.example.jetpackcompose.model.FoodCategory
+import com.example.jetpackcompose.model.getAllFoodCategories
 import kotlinx.coroutines.launch
 
 @Composable
