@@ -79,8 +79,8 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
-    implementation("com.google.dagger:hilt-android:2.34.1-beta")
-    kapt("com.google.dagger:hilt-compiler:2.34.1-beta")
+    implementation("com.google.dagger:hilt-android:2.35")
+    kapt("com.google.dagger:hilt-compiler:2.35")
 
     implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
 
