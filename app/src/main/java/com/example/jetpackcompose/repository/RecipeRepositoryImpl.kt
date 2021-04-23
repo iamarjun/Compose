@@ -15,6 +15,11 @@ class RecipeRepositoryImpl @Inject constructor(
         return mapper.toDomainList(response.results)
     }
 
+    override suspend fun getRecipe(id: Int?): Recipe {
+        val response = restApi.getRecipe(id = id)
+        return mapper.mapToDomainModel(response)
+    }
+
     companion object {
         private var pageNo: Int = 0
     }
