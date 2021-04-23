@@ -1,8 +1,13 @@
 package com.example.jetpackcompose.repository
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.example.jetpackcompose.RestApi
+import com.example.jetpackcompose.dataSource.RecipePagingSource
 import com.example.jetpackcompose.model.domain.Recipe
 import com.example.jetpackcompose.model.network.RecipeDtoMapper
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class RecipeRepositoryImpl @Inject constructor(
@@ -10,9 +15,20 @@ class RecipeRepositoryImpl @Inject constructor(
     private val restApi: RestApi
 ) : RecipeRepository {
 
-    override suspend fun getRecipes(query: String): List<Recipe> {
-        val response = restApi.getRecipes(++pageNo, query)
-        return mapper.toDomainList(response.results)
+    override fun getRecipes(query: String): Flow<PagingData<Recipe>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = NETWORK_PAGE_SIZE,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = {
+                RecipePagingSource(
+                    restApi = restApi,
+                    query = query,
+                    mapper = mapper
+                )
+            }
+        ).flow
     }
 
     override suspend fun getRecipe(id: Int?): Recipe {
@@ -21,6 +37,6 @@ class RecipeRepositoryImpl @Inject constructor(
     }
 
     companion object {
-        private var pageNo: Int = 0
+        const val NETWORK_PAGE_SIZE = 30
     }
 }

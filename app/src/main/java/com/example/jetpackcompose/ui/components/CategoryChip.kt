@@ -19,7 +19,7 @@ fun CategoryChip(
     category: String,
     isSelected: Boolean = false,
     onCategorySelected: (String) -> Unit,
-    onExecuteSearch: () -> Unit,
+    onExecuteSearch: (String) -> Unit,
 ) {
     Surface(
         modifier = Modifier.padding(4.dp),
@@ -37,7 +37,7 @@ fun CategoryChip(
                 value = isSelected,
                 onValueChange = {
                     onCategorySelected(category)
-                    onExecuteSearch()
+                    onExecuteSearch(category)
                 }
             )) {
             Text(

@@ -28,9 +28,9 @@ fun TopSearchBar(
     query: String,
     scrollPos: Int,
     selectedCategory: FoodCategory?,
-    onQueryChanged: (String) -> Unit,
-    onCategorySelected: (String, Int) -> Unit,
-    onExecuteSearch: () -> Unit,
+    onQueryChange: (String) -> Unit,
+    onCategorySelect: (String, Int) -> Unit,
+    onExecuteSearch: (String) -> Unit,
 
     ) {
 
@@ -48,7 +48,7 @@ fun TopSearchBar(
             ) {
                 TextField(
                     value = query,
-                    onValueChange = onQueryChanged,
+                    onValueChange = onQueryChange,
                     modifier = Modifier
                         .fillMaxWidth(0.9f)
                         .padding(4.dp),
@@ -98,7 +98,7 @@ fun TopSearchBar(
                         category = item.value,
                         isSelected = selectedCategory == item,
                         onCategorySelected = {
-                            onCategorySelected(it, index)
+                            onCategorySelect(it, index)
                         },
                         onExecuteSearch = onExecuteSearch
                     )
