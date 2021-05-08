@@ -84,7 +84,7 @@ dependencies {
 
     implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
 
-    implementation("com.google.accompanist:accompanist-glide:0.9.0")
+    implementation("com.google.accompanist:accompanist-glide:0.9.1")
 
     implementation("androidx.paging:paging-runtime-ktx:3.0.0-rc01")
     // Jetpack Compose Integration
