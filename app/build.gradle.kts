@@ -80,11 +80,11 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     implementation("com.google.dagger:hilt-android:2.35.1")
-    kapt("com.google.dagger:hilt-compiler:2.35")
+    kapt("com.google.dagger:hilt-compiler:2.35.1")
 
     implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
 
-    implementation("com.google.accompanist:accompanist-glide:0.8.1")
+    implementation("com.google.accompanist:accompanist-glide:0.9.0")
 
     implementation("androidx.paging:paging-runtime-ktx:3.0.0-rc01")
     // Jetpack Compose Integration
